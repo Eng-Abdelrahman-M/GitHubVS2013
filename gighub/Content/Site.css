@@ -1,10 +1,4 @@
-﻿/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-/* Override the default bootstrap behavior where horizontal description lists 
+﻿/* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
@@ -33,7 +27,7 @@ h6,
 .h4,
 .h5,    
 .h6 {
-    font-family: "Raleway","Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Open Sans","Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -50,4 +44,20 @@ body {
 
 .navbar-brand {
     font-family: "Lobster","Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.footer {
+    background: #e9e9eb;
+    padding: 15px 20px;
+    color: #232425;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.page-head {
+    padding: 20px 0;
+    position: relative;
 }

@@ -1,6 +1,8 @@
 ﻿using gighub.Models;
 using gighub.View_Models;
 using Microsoft.AspNet.Identity;
+using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -48,5 +50,11 @@ namespace gighub.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult MyGigs()
+        {
+            string userId = User.Identity.GetUserId();
+            var gigs = _context.Gigs.Include(g => g.Artist).Where(g => g.DateTime > DateTime.Now && g.ArtistId == userId);
+            return View(gigs);
+        }
     }
 }

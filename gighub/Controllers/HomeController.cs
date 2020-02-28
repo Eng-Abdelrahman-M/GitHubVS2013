@@ -1,4 +1,5 @@
 ﻿using gighub.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -17,9 +18,12 @@ namespace gighub.Controllers
 
         public ActionResult Index()
         {
-            var gigs = _context.Gigs.Include(g => g.Artist).Where(g => g.DateTime > DateTime.Now);
+            string userId = User.Identity.GetUserId();
+            var gigs = _context.Gigs.Include(g => g.Artist).Where(g => g.DateTime > DateTime.Now && g.ArtistId != userId);
             return View(gigs);
         }
+
+
 
         public ActionResult About()
         {

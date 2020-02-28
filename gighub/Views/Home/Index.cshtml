@@ -1,11 +1,62 @@
-﻿@model IEnumerable<gighub.Models.Gig>
+﻿@using System.Linq
+@model IEnumerable<gighub.Models.Gig>
 @{
     ViewBag.Title = "Home Page";
 }
-
-<ul>
-    @foreach (var gig in Model)
+@if (!Model.Any())
+{
+    if (Request.IsAuthenticated)
     {
-        <li>@gig.Artist.Name - @gig.DateTime</li>
+        @Styles.Render("~/Content/fontawesome.min.css")
+        @Styles.Render("~/Content/solid.min.css")
+        <div class="page-head">
+            <h4 class="my-2">Gigs</h4>
+        </div>
+        var item = 0;
+        foreach (var gig in Model)
+        {
+
+            if (item == 0)
+            {
+                @:<div class="row">
+                item++;
+            }
+            if (item < 3)
+            {
+                <div class="col-lg-3 col-sm-12" item_num="1">
+                    <div class="card bg-white m-b-30 text-center">
+
+                        <div class="card-body">
+                            <div class="card-title mt-3">
+                                <h5>@gig.Artist.Name</h5>
+                                <a href="#">Follow</a>
+                            </div>
+                            <div class="mt-2">
+                                <li>@gig.DateTime</li>
+                            </div>
+                        </div>
+
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-secondary btn-block mt-0 tooltips text-white " data-placement="top" data-toggle="tooltip" data-original-title="Going">
+                                <i class="fas fa-walking"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                item++;
+            }
+            if (item == 2)
+            {
+                @:<div />
+                item = 0;
+            }
+
+        }
+        @Scripts.Render("~/Scripts/fontawesome/fontawesome.min.js")
+
     }
-</ul>
+    else
+    {
+        { Response.Redirect("~/Account/Login"); }
+    }
+}
